@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modhak Turns <span id="current-age"></span> 🎉 | Thank You!</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --retro-gold: #FFD700;
+            --retro-orange: #FF8C42;
+            --retro-cream: #FFF8DC;
+            --retro-brown: #8B4513;
+            --retro-teal: #20B2AA;
+            --dark-bg: #1a1a2e;
+            --card-bg: rgba(255, 248, 220, 0.1);
+            --glass-border: rgba(255, 215, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Space Mono', monospace;
+            color: var(--retro-cream);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background dots */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, var(--retro-gold) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, var(--retro-orange) 1px, transparent 1px);
+            background-size: 60px 60px, 40px 40px;
+            animation: dotsMove 20s linear infinite;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        @keyframes dotsMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Glass morphism effect */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 215, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Elegant retro text effects */
+        .neon-title {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--retro-gold);
+            text-shadow: 
+                2px 2px 0 var(--retro-brown),
+                4px 4px 0 var(--retro-orange),
+                0 0 20px rgba(255, 215, 0, 0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 2px 2px 0 var(--retro-brown), 4px 4px 0 var(--retro-orange), 0 0 20px rgba(255, 215, 0, 0.5); }
+            to { text-shadow: 2px 2px 0 var(--retro-brown), 4px 4px 0 var(--retro-orange), 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+
+        .neon-subtitle {
+            font-family: 'Orbitron', monospace;
+            color: var(--retro-teal);
+            text-shadow: 0 0 10px var(--retro-teal);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Retro buttons */
+        .retro-btn {
+            background: linear-gradient(45deg, var(--retro-gold), var(--retro-orange));
+            border: 3px solid var(--retro-brown);
+            padding: 15px 30px;
+            color: var(--retro-brown);
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                5px 5px 0 var(--retro-brown),
+                0 0 20px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .retro-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .retro-btn:hover::before {
+            left: 100%;
+        }
+
+        .retro-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 
+                7px 7px 0 var(--retro-brown),
+                0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        /* About section */
+        .about-section {
+            margin: 4rem 0;
+        }
+
+        .about-card {
+            margin-bottom: 2rem;
+        }
+
+        .about-icon {
+            font-size: 3rem;
+            color: var(--retro-gold);
+            text-shadow: 0 0 20px var(--retro-gold);
+            margin-bottom: 1rem;
+        }
+
+        .about-title {
+            font-family: 'Orbitron', monospace;
+            color: var(--retro-gold);
+            text-shadow: 0 0 10px var(--retro-gold);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Picture gallery */
+        .gallery {
+            column-count: 3;
+            column-gap: 20px;
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 3px solid var(--retro-gold);
+            box-shadow: 
+                5px 5px 0 var(--retro-brown),
+                0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            filter: sepia(0.2) contrast(1.1);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 
+                8px 8px 0 var(--retro-brown),
+                0 15px 35px rgba(255, 215, 0, 0.4);
+            filter: sepia(0.1) contrast(1.2) brightness(1.1);
+        }
+
+        /* Countdown styling */
+        .countdown-container {
+            background: linear-gradient(135deg, var(--retro-teal), var(--retro-gold));
+            border: 3px solid var(--retro-brown);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 
+                5px 5px 0 var(--retro-brown),
+                0 0 30px rgba(32, 178, 170, 0.3);
+            color: var(--dark-bg);
+        }
+
+        .countdown-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .countdown-display {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            font-weight: 700;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        /* Thank you section styling */
+        .thank-you-section {
+            background: linear-gradient(135deg, var(--retro-gold), var(--retro-orange));
+            color: var(--dark-bg);
+            border: 3px solid var(--retro-brown);
+            box-shadow: 5px 5px 0 var(--retro-brown);
+        }
+
+        .thank-you-section .about-title {
+            color: var(--dark-bg);
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Floating emojis enhancement */
+        .emoji {
+            position: fixed;
+            font-size: 2rem;
+            animation: floatEmoji 12s linear infinite;
+            opacity: 0.8;
+            z-index: 0;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes floatEmoji {
+            from { 
+                transform: translateY(100vh) rotate(0deg) scale(0.5); 
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            to { 
+                transform: translateY(-10vh) rotate(360deg) scale(1.2); 
+                opacity: 0;
+            }
+        }
+
+        /* Confetti canvas */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Music control button */
+        #mute-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--retro-gold);
+            color: var(--retro-cream);
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            box-shadow: 3px 3px 0 var(--retro-brown);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .gallery {
+                column-count: 2;
+            }
+            
+            .glass-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                column-count: 1;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid var(--glass-border);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .social-links a {
+            color: var(--retro-gold);
+            font-size: 2rem;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--retro-orange);
+            text-shadow: 0 0 20px var(--retro-orange);
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti Canvas -->
+    <canvas id="confetti"></canvas>
+
+    <!-- Music Control -->
+    <button id="mute-btn" onclick="toggleMusic()">
+        <i class="fas fa-volume-up"></i> Music
+    </button>
+
+    <audio id="bg-music" autoplay loop muted>
+        <source src="https://www.bensound.com/bensound-music/bensound-buddy.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container-fluid">
+        <!-- Hero Section -->
+        <section class="text-center py-5" data-aos="fade-up">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h1 class="neon-title">Thanks for the wishes,<br>I'm <span id="age-display"></span> now!!</h1>
+                    <p class="neon-subtitle">– MODHAK –</p>
+                    <button class="retro-btn me-3 mb-3" onclick="rickRoll()">
+                        <i class="fas fa-gift me-2"></i>Your Return Gift 🎁
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" data-aos="fade-up" data-aos-delay="200">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card">
+                        <h2 class="about-title text-center mb-4">
+                            <i class="fas fa-user-astronaut me-2"></i>About Me
+                        </h2>
+                        <div class="row">
+                            <div class="col-md-4 text-center about-card" data-aos="zoom-in" data-aos-delay="300">
+                                <i class="fas fa-birthday-cake about-icon"></i>
+                                <h4 class="about-title">Just Turned <span id="age-about"></span>!</h4>
+                                <p>Born on August 28th, and just hit a new checkpoint in life! More XP, better upgrades & way more side quests ahead.</p>
+                            </div>
+                            <div class="col-md-4 text-center about-card" data-aos="zoom-in" data-aos-delay="400">
+                                <i class="fas fa-calendar-alt about-icon"></i>
+                                <h4 class="about-title">This Year's Journey</h4>
+                                <p>From challenges to celebrations, this year has been filled with growth, learning, and unforgettable moments that shaped who I am today.</p>
+                            </div>
+                            <div class="col-md-4 text-center about-card" data-aos="zoom-in" data-aos-delay="500">
+                                <i class="fas fa-heart about-icon"></i>
+                                <h4 class="about-title">Grateful Heart</h4>
+                                <p>To everyone who’s been part of the chaos, laughter, and late-night memories — you’re the real MVPs. Couldn’t level up without you!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown Section -->
+        <section class="text-center" data-aos="fade-up" data-aos-delay="700">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="countdown-container">
+                        <h3 class="countdown-title">
+                            <i class="fas fa-clock me-2"></i>Next Adventure Countdown
+                        </h3>
+                        <div id="countdown" class="countdown-display"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory Gallery -->
+        <section data-aos="fade-up" data-aos-delay="800">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card">
+                        <h2 class="about-title text-center mb-4">
+                            <i class="fas fa-camera-retro me-2"></i>Memory Lane
+                        </h2>
+                        <div class="gallery">
+                            <img src="Pic_1.jpg" alt="Memory 1" loading="lazy">
+                            <img src="Pic_8.jpg" alt="Memory 2" loading="lazy">
+                            <img src="Pic_3.jpg" alt="Memory 3" loading="lazy">
+                            <img src="Pic_4.jpg" alt="Memory 4" loading="lazy">
+                            <img src="Pic_10.jpg" alt="Memory 5" loading="lazy">
+                            <img src="Pic_6.jpg" alt="Memory 6" loading="lazy">
+                            <img src="Pic_7.jpg" alt="Memory 7" loading="lazy">
+                            <img src="Pic_2.jpg" alt="Memory 8" loading="lazy">
+                            <img src="Pic_9.jpg" alt="Memory 9" loading="lazy">
+                            <img src="Pic_5.jpg" alt="Memory 10" loading="lazy">
+                            <img src="Pic_11.jpg" alt="Memory 11" loading="lazy">
+                            <img src="Pic_12.jpg" alt="Memory 12" loading="lazy">
+                            <img src="Pic_13.jpg" alt="Memory 13" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Thank You Message -->
+        <section class="text-center py-5" data-aos="fade-up" data-aos-delay="900">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card thank-you-section">
+                        <h2 class="about-title">
+                            <i class="fas fa-hands-helping me-2"></i>Thank You!
+                        </h2>
+                        <p class="lead">Your birthday wishes mean the world to me! Each message, call, and gesture made this day incredibly special. Here's to another year of friendship, laughter, and amazing memories together!</p>
+                        <div class="mt-4">
+                            <i class="fas fa-star" style="color: var(--dark-bg); font-size: 2rem; margin: 0 0.5rem;"></i>
+                            <i class="fas fa-heart" style="color: var(--retro-brown); font-size: 2rem; margin: 0 0.5rem;"></i>
+                            <i class="fas fa-star" style="color: var(--dark-bg); font-size: 2rem; margin: 0 0.5rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Modhak's <span id="age-footer"></span> Birthday | Made with <i class="fas fa-heart" style="color: var(--retro-orange);"></i></p>
+            <div class="social-links mt-3">
+                <a href="https://www.instagram.com/modhak_natesh?igsh=MWdqY2J6Mzl5bW5zaA=="><i class="fab fa-instagram"></i></a>
+                <a href="https://www.snapchat.com/add/modhak_natesh17?share_id=ONtOegSPXxA&locale=en-IN"><i class="fab fa-snapchat"></i></a>
+                <a href="https://www.linkedin.com/in/modhak-g-n?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ModhakNatesh"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <script>
+        // Calculate current age dynamically
+        function calculateAge() {
+            const birthDate = new Date('2003-08-28'); // Your birth date
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            return age;
+        }
+
+        // Update age in all places
+        function updateAge() {
+            const currentAge = calculateAge();
+            document.getElementById('age-display').textContent = currentAge;
+            document.getElementById('age-about').textContent = currentAge;
+            document.getElementById('age-footer').textContent = currentAge;
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Update page title
+            document.title = `Modhak Turns ${currentAge} 🎉 | Thank You!`;
+        }
+
+        // Initialize age on page load
+        updateAge();
+
+        // Initialize AOS animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Hidden video container
+        const videoContainer = document.createElement('div');
+        videoContainer.id = 'video-container';
+        videoContainer.style.cssText = `
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        `;
+        document.body.appendChild(videoContainer);
+
+        // Rickroll function
+        function rickRoll() {
+            const videoContainer = document.getElementById('video-container');
+            const bgMusic = document.getElementById("bg-music");
+            // Pause background music
+            bgMusic.pause();
+            // Update music button UI
+            document.getElementById("mute-btn").innerHTML = '<i class="fas fa-volume-mute"></i> Music';
+            
+            videoContainer.innerHTML = `
+                <video width="560" height="315" autoplay controls>
+                    <source src="rickroll.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button onclick="closeVideo()" style="
+                    position: absolute;
+                    top: -15px;
+                    right: -15px;
+                    background: var(--retro-gold);
+                    border: none;
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    cursor: pointer;
+                    color: var(--dark-bg);
+                    font-weight: bold;
+                ">×</button>
+            `;
+            videoContainer.style.display = 'block';
+        }
+
+        // Close video function
+        function closeVideo() {
+            const videoContainer = document.getElementById('video-container');
+            const bgMusic = document.getElementById("bg-music");
+            videoContainer.style.display = 'none';
+            videoContainer.innerHTML = '';
+            // Resume background music if it was playing before
+            if (!bgMusic.muted) {
+                bgMusic.play();
+                document.getElementById("mute-btn").innerHTML = '<i class="fas fa-volume-up"></i> Music';
+            }
+        }
+
+        // Music toggle
+        const music = document.getElementById("bg-music");
+        const muteBtn = document.getElementById("mute-btn");
+        
+        function toggleMusic() {
+            if (music.muted) {
+                music.muted = false;
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Music';
+            } else {
+                music.muted = true;
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Music';
+            }
+        }
+
+        // Unmute on first click
+        document.body.addEventListener("click", () => {
+            music.muted = false;
+            muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Music';
+        }, { once: true });
+
+        // Enhanced Confetti Effect with retro colors
+        const confetti = document.getElementById('confetti');
+        const ctx = confetti.getContext('2d');
+        confetti.width = window.innerWidth;
+        confetti.height = window.innerHeight;
+
+        const particles = [];
+        const colors = ['#FFD700', '#FF8C42', '#FFF8DC', '#8B4513', '#20B2AA'];
+        const shapes = ['circle', 'square', 'triangle'];
+
+        function random(min, max) { 
+            return Math.random() * (max - min) + min; 
+        }
+
+        // Create particles
+        for (let i = 0; i < 100; i++) {
+            particles.push({
+                x: random(0, confetti.width),
+                y: random(0, confetti.height),
+                r: random(3, 8),
+                d: random(1, 3),
+                color: colors[Math.floor(Math.random() * colors.length)],
+                tilt: random(-15, 15),
+                shape: shapes[Math.floor(Math.random() * shapes.length)],
+                opacity: random(0.7, 1)
+            });
+        }
+
+        function drawParticle(p) {
+            ctx.save();
+            ctx.globalAlpha = p.opacity;
+            ctx.fillStyle = p.color;
+            ctx.strokeStyle = '#8B4513';
+            ctx.lineWidth = 1;
+            ctx.translate(p.x + p.r/2, p.y + p.r/2);
+            ctx.rotate(p.tilt * Math.PI / 180);
+            
+            if (p.shape === 'circle') {
+                ctx.beginPath();
+                ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+            } else if (p.shape === 'square') {
+                ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r);
+                ctx.strokeRect(-p.r/2, -p.r/2, p.r, p.r);
+            } else if (p.shape === 'triangle') {
+                ctx.beginPath();
+                ctx.moveTo(0, -p.r/2);
+                ctx.lineTo(-p.r/2, p.r/2);
+                ctx.lineTo(p.r/2, p.r/2);
+                ctx.fill();
+                ctx.stroke();
+            }
+            ctx.restore();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, confetti.width, confetti.height);
+            for (let i = 0; i < particles.length; i++) {
+                drawParticle(particles[i]);
+            }
+            update();
+        }
+
+        function update() {
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                p.y += p.d;
+                p.tilt += 1;
+                if (p.y > confetti.height) {
+                    particles[i] = {
+                        x: random(0, confetti.width), 
+                        y: -10, 
+                        r: p.r, 
+                        d: p.d, 
+                        color: p.color, 
+                        tilt: random(-15, 15),
+                        shape: p.shape,
+                        opacity: p.opacity
+                    };
+                }
+            }
+        }
+
+        setInterval(draw, 33); // ~30 FPS
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            confetti.width = window.innerWidth;
+            confetti.height = window.innerHeight;
+        });
+
+        // Countdown to next birthday
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const currentYear = new Date().getFullYear();
+            let nextBirthday = new Date(`August 28, ${currentYear} 00:00:00`).getTime();
+            
+            // If this year's birthday has passed, use next year
+            if (now > nextBirthday) {
+                nextBirthday = new Date(`August 28, ${currentYear + 1} 00:00:00`).getTime();
+            }
+            
+            const distance = nextBirthday - now;
+            const nextAge = calculateAge() + 1;
+            
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = 
+                    `Until I turn ${nextAge} 🎂<br><span style="font-size: 1.5em;">${days}d ${hours}h ${minutes}m ${seconds}s</span>`;
+            } else {
+                document.getElementById('countdown').innerHTML = "🎉 It's my birthday today! 🎉";
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Enhanced floating emojis with retro feel
+        const emojis = ['🎉','🥳','🍰','🎂','✨','🎊','🎈','🌟','💫','🎵'];
+        
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = (8 + Math.random() * 6) + 's';
+            emoji.style.fontSize = (1.5 + Math.random() * 1) + 'rem';
+            document.body.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 15000);
+        }
+        
+        // Create emoji every 3 seconds for less distraction
+        setInterval(createEmoji, 3000);
+        
+        // Create initial burst of emojis
+        for(let i = 0; i < 3; i++) {
+            setTimeout(createEmoji, i * 800);
+        }
+
+        // Add some interactive effects
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('click', function() {
+                // Create a sparkle effect on image click
+                for(let i = 0; i < 2; i++) {
+                    setTimeout(() => createEmoji(), i * 200);
+                }
+            });
+        });
+
+        // Add subtle glow effect to title occasionally
+        const title = document.querySelector('.neon-title');
+        setInterval(() => {
+            if (Math.random() < 0.15) { // 15% chance
+                title.style.textShadow = `
+                    2px 2px 0 var(--retro-brown),
+                    4px 4px 0 var(--retro-orange),
+                    0 0 40px rgba(255, 215, 0, 0.9)
+                `;
+                setTimeout(() => {
+                    title.style.textShadow = `
+                        2px 2px 0 var(--retro-brown),
+                        4px 4px 0 var(--retro-orange),
+                        0 0 20px rgba(255, 215, 0, 0.5)
+                    `;
+                }, 150);
+            }
+        }, 4000);
+    </script>
+</body>
+</html>
