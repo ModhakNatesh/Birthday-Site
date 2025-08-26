@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modhak Turns <span id="current-age"></span> 🎉 | Thank You!</title>
+    <title>Modhak's Birthday Page 🎉 | Thank You!</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -290,6 +290,44 @@
             box-shadow: 3px 3px 0 var(--retro-brown);
         }
 
+        /* Video container styles */
+        #video-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            max-width: 90vw;
+            width: 600px;
+        }
+
+        #video-container video {
+            width: 100%;
+            height: auto;
+            max-width: 560px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #video-container .close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: var(--retro-gold);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            color: var(--dark-bg);
+            font-weight: bold;
+            z-index: 1001;
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .gallery {
@@ -299,6 +337,15 @@
             .glass-card {
                 padding: 1.5rem;
                 margin: 1rem;
+            }
+
+            #video-container {
+                padding: 15px;
+            }
+
+            #video-container .close-btn {
+                top: 5px;
+                right: 5px;
             }
         }
 
@@ -353,7 +400,7 @@
                     <h1 class="neon-title">Thanks for the wishes,<br>I'm <span id="age-display"></span> now!!</h1>
                     <p class="neon-subtitle">– MODHAK –</p>
                     <button class="retro-btn me-3 mb-3" onclick="rickRoll()">
-                        <i class="fas fa-gift me-2"></i>Click For Your Return Gift 🎁
+                        <i class="fas fa-gift me-2"></i>Click For Your Return Gift
                     </button>
                 </div>
             </div>
@@ -492,7 +539,7 @@
             document.getElementById('current-year').textContent = new Date().getFullYear();
             
             // Update page title
-            document.title = `Modhak Turns ${currentAge} 🎉 | Thank You!`;
+            // document.title = `Modhak Turns ${currentAge} 🎉 | Thank You!`;
         }
 
         // Initialize age on page load
@@ -532,23 +579,11 @@
             document.getElementById("mute-btn").innerHTML = '<i class="fas fa-volume-mute"></i> Music';
             
             videoContainer.innerHTML = `
-                <video width="560" height="315" autoplay controls>
+                <video autoplay controls>
                     <source src="rickroll.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <button onclick="closeVideo()" style="
-                    position: absolute;
-                    top: -15px;
-                    right: -15px;
-                    background: var(--retro-gold);
-                    border: none;
-                    border-radius: 50%;
-                    width: 30px;
-                    height: 30px;
-                    cursor: pointer;
-                    color: var(--dark-bg);
-                    font-weight: bold;
-                ">×</button>
+                <button onclick="closeVideo()" class="close-btn">×</button>
             `;
             videoContainer.style.display = 'block';
         }
